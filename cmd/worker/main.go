@@ -8,6 +8,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/ignbmd/go-queue-worker/internal/config"
 	"github.com/ignbmd/go-queue-worker/internal/db"
 	"github.com/ignbmd/go-queue-worker/internal/queue"
 )
@@ -15,6 +16,8 @@ import (
 func main() {
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelInfo}))
 	slog.SetDefault(logger)
+
+	config.LoadEnv()
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()

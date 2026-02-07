@@ -29,7 +29,11 @@ README.md
 docker compose -f docker/docker-compose.yml up -d
 ```
 
+The services load `.env` automatically on startup. If you run the API/worker/scheduler on your host, set `POSTGRES_HOST=localhost` and `REDIS_HOST=localhost`. If you run them inside the Docker Compose network, use `POSTGRES_HOST=postgres` and `REDIS_HOST=redis` to match the service names.
+
 ## Running services
+
+Run the commands from the repository root so the `.env` file is discovered automatically.
 
 ```bash
 go run ./cmd/api
